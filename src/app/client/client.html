@@ -1,0 +1,19 @@
+<mat-form-field>
+  <mat-label>Select Staff Member</mat-label>
+  <mat-select [(value)]="selectedStaffMember">
+    <mat-option>All</mat-option>
+    @for (staffMember of staff; track $index) {
+      <mat-option [value]="staffMember">{{ staffMember.name }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<p>days {{ selectedStaffMember?.days || allStaffDays }}</p>
+
+<mat-form-field>
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepickerFilter]="availableDays" [matDatepicker]="picker">
+  <mat-hint>DD/MM/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
